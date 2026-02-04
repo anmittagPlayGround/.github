@@ -55,6 +55,10 @@ body:
         - label: Safety Analysis
         - label: Security Analysis 
         - label: Detailed Design
+        - label: Implementation 
+        - label: Test Cases
+        - label: Process
+        - label: Infrastructure
         - label: Others
           required: true
   - type: textarea
@@ -66,7 +70,7 @@ body:
         If the following template is use within a PR, link it to this issue
         [Change Management Impact Analysis Template](https://eclipse-score.github.io/process_description/main/process_areas/change_management/guidance/change_management_impact_analysis_template.html) needs to be used
     validations:
-      required: true
+      required: false
   - type: checkboxes
     attributes:
       label: Safety or Security relevance
@@ -88,14 +92,14 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Expected Release 
+      label: Expected available in Release 
       options:
-        - 0.5
-        - 0.6
-        - 0.7
-        - 0.8
-        - 0.9
-        - 1.0
+        - '0.5'
+        - '0.6'
+        - '0.7'
+        - '0.8'
+        - '0.9'
+        - '1.0'
       default: 0
     validations:
       required: false
