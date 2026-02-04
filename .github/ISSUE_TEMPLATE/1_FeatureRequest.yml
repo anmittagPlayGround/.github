@@ -32,9 +32,9 @@ body:
     attributes:
       label: Expected available in Release 
       options:
-        - 1.0
-        - 2.0
-        - 3.0
+        - '1.0'
+        - '2.0'
+        - '3.0'
       default: 0
     validations:
       required: false
