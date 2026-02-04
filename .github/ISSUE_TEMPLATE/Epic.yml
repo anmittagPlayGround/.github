@@ -46,6 +46,7 @@ body:
         - label: Safety Analysis
         - label: Security Analysis 
         - label: Detailed Design
+        - label: Others
           required: true
   - type: textarea
     attributes:
@@ -72,6 +73,7 @@ body:
       options:
         - QM
         - ASIL_B
+        - ASIL_D
       default: 0
     validations:
       required: true
