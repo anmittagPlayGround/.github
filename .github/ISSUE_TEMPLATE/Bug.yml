@@ -42,7 +42,7 @@ body:
         Documentation of the solution
         Link to Pull Request containing the solution
     validations:
-      required: true
+      required: false
   - type: dropdown
     attributes:
       label: Error Occurrence  Rate
@@ -76,7 +76,7 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Affected Version
+      label: First Affected Release 
       options:
         - pre-0.5
         - 0.5
@@ -90,7 +90,21 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Expected Closure Version
+      label: Last Affected Release 
+      options:
+        - pre-0.5
+        - 0.5
+        - 0.6
+        - 0.7
+        - 0.8
+        - 0.9
+        - 1.0
+      default: 0
+    validations:
+      required: true
+    - type: dropdown
+    attributes:
+      label: Expected Fixed Release
       options:
         - 0.5
         - 0.6
