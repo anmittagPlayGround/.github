@@ -102,7 +102,7 @@ body:
       default: 0
     validations:
       required: true
-    - type: dropdown
+  - type: dropdown
     attributes:
       label: Expected Fixed Release
       options:
