@@ -17,6 +17,9 @@ title: "Your Epic title"
 labels: ["codeowner_review"]
 type: 'Epic'
 body:
+  - type: markdown
+    attributes:
+      value: "## <ins>Epic Ticket creation</ins>"
   - type: dropdown
     attributes:
       label: Epic Type
@@ -85,9 +88,13 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Expected Implementation Version
+      label: Expected Release 
       options:
         - 0.5
+        - 0.6
+        - 0.7
+        - 0.8
+        - 0.9
         - 1.0
       default: 0
     validations:
