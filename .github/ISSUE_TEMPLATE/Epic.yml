@@ -37,6 +37,12 @@ body:
           [Change Management Component Request Template](https://eclipse-score.github.io/process_description/main/process_areas/change_management/guidance/change_management_component_template.html) needs to be used
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: Acceptance Criteria (DoD)
+      description: Details on when the Task is considered "done"
+    validations:
+      required: true
   - type: checkboxes
     attributes:
       label: Affects work products
