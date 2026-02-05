@@ -1,0 +1,102 @@
+
+name: Sync GitHub Teams
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/teams.yaml"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install yq
+        run: sudo apt-get update && sudo apt-get install -y jq yq
+
+      - name: Auth with gh
+        env:
+          GH_TOKEN: ${{ secrets.ORG_ADMIN_PAT }}
+        run: gh auth status || gh auth setup-git
+
+      - name: Apply team config
+        env:
+          GH_TOKEN: ${{ secrets.ORG_ADMIN_PAT }}
+        run: |
+          ORG=$(yq -r '.org' .github/teams.yaml)
+
+          create_or_update_team() {
+            local SLUG=$1
+            local NAME=$2
+            local PRIVACY=$3
+
+            # Check if team exists
+            if gh api -H "Accept: application/vnd.github+json" \
+              /orgs/$ORG/teams/$SLUG >/dev/null 2>&1; then
+              # Update
+              gh api -X PATCH /orgs/$ORG/teams/$SLUG \
+                -f name="$NAME" -f privacy="$PRIVACY" >/dev/null
+            else
+              # Create
+              gh api -X POST /orgs/$ORG/teams \
+                -f name="$NAME" -f privacy="$PRIVACY" -f slug="$SLUG" >/dev/null
+            fi
+          }
+
+          add_user_to_team() {
+            local SLUG=$1
+            local USER=$2
+            local ROLE=${3:-member}
+            gh api -X PUT /orgs/$ORG/teams/$SLUG/memberships/$USER \
+              -f role="$ROLE" >/dev/null
+          }
+
+          set_repo_perm() {
+            local SLUG=$1
+            local REPO=$2
+            local PERM=$3
+            gh api -X PUT /orgs/$ORG/teams/$SLUG/repos/$ORG/$REPO \
+              -f permission="$PERM" >/dev/null
+          }
+
+          TEAMS_LEN=$(yq '.teams | length' .github/teams.yaml)
+          for i in $(seq 0 $((TEAMS_LEN-1))); do
+            SLUG=$(yq -r ".teams[$i].slug" .github/teams.yaml)
+            NAME=$(yq -r ".teams[$i].name" .github/teams.yaml)
+            PRIVACY=$(yq -r ".teams[$i].privacy" .github/teams.yaml)
+
+            create_or_update_team "$SLUG" "$NAME" "$PRIVACY"
+
+            # maintainers
+            MLEN=$(yq ".teams[$i].maintainers | length" .github/teams.yaml 2>/dev/null || echo 0)
+            if [ "$MLEN" != "null" ] && [ "$MLEN" -gt 0 ]; then
+              for m in $(yq -r ".teams[$i].maintainers[]" .github/teams.yaml); do
+                add_user_to_team "$SLUG" "$m" "maintainer"
+              done
+            fi
+
+            # members
+            ULEN=$(yq ".teams[$i].members | length" .github/teams.yaml 2>/dev/null || echo 0)
+            if [ "$ULEN" != "null" ] && [ "$ULEN" -gt 0 ]; then
+              for u in $(yq -r ".teams[$i].members[]" .github/teams.yaml); do
+                add_user_to_team "$SLUG" "$u" "member"
+              done
+            fi
+
+            # repos
+            RLEN=$(yq ".teams[$i].repositories | length" .github/teams.yaml 2>/dev/null || echo 0)
+            if [ "$RLEN" != "null" ] && [ "$RLEN" -gt 0 ]; then
+              for idx in $(seq 0 $((RLEN-1))); do
+                REPO=$(yq -r ".teams[$i].repositories[$idx].name" .github/teams.yaml)
+                PERM=$(yq -r ".teams[$i].repositories[$idx].permission" .github/teams.yaml)
+                set_repo_perm "$SLUG" "$REPO" "$PERM"
+              done
+            fi
+          done
