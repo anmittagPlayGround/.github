@@ -1,0 +1,12 @@
+org: anmittagPlayGround
+teams:
+  - slug: core-developers
+    name: Core Developers
+    privacy: closed
+    maintainers:
+      - anmittag
+    members:
+      - anmittag
+    repositories:
+      - name: main
+        permission: maintain
