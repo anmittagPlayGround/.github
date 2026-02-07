@@ -13,16 +13,16 @@
 
 name: Component Request
 description: Issue to track a Feature Request
-title: "Your Feature Request title"
+title: "Your Component Request title"
 labels: ["codeowner_review"]
 type: 'Feature Request'
 body:
   - type: markdown
     attributes:
-      value: "## <ins>Feature Request Ticket creation</ins>"
+      value: "## <ins>Component Request Ticket creation</ins>"
   - type: textarea
     attributes:
-      label: Feature Request Description
+      label: Component Request Description
       description: |
        - Follow the [Change Management Workflow](https://eclipse-score.github.io/score/main/platform_management_plan/change_management.html#change-request-workflow) 
     validations:
