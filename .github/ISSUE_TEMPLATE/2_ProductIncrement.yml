@@ -24,7 +24,9 @@ body:
     attributes:
       label: Product Increment Description
       description: |
-        - Goal of the Product Increment
+        New Functionality / Features |
+        API changes |
+        Major Fixes | 
     validations:
       required: true
   - type: textarea
@@ -33,3 +35,18 @@ body:
       description: Details on when the Product Increment is considered "done"
     validations:
       required: true
+  - type: checkboxes
+    attributes:
+      label: Affects work products
+      options:
+        - label: Requirements
+        - label: Architecture
+        - label: Safety Analysis
+        - label: Security Analysis 
+        - label: Detailed Design
+        - label: Implementation 
+        - label: Test Cases
+        - label: Process
+        - label: Infrastructure
+        - label: Others
+          required: false
