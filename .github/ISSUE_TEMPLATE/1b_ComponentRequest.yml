@@ -12,7 +12,7 @@
 # *******************************************************************************
 
 name: Component Request
-description: Issue to track a Feature Request
+description: Issue to track a Component Request
 title: "Your Component Request title"
 labels: ["codeowner_review"]
 type: 'Component Request'
