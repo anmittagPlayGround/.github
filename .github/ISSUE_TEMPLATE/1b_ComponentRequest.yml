@@ -15,7 +15,7 @@ name: Component Request
 description: Issue to track a Feature Request
 title: "Your Component Request title"
 labels: ["codeowner_review"]
-type: 'Feature Request'
+type: 'Component Request'
 body:
   - type: markdown
     attributes:
