@@ -20,16 +20,6 @@ body:
   - type: markdown
     attributes:
       value: "## <ins>Epic Ticket creation</ins>"
-  - type: dropdown
-    attributes:
-      label: Epic Type
-      options:
-        - Feature Modification
-        - Component Modification
-        - Others
-      default: 0
-    validations:
-      required: true
   - type: textarea
     attributes:
       label: Epic Description
