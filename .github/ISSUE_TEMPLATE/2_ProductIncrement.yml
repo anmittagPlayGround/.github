@@ -33,32 +33,3 @@ body:
       description: Details on when the Product Increment is considered "done"
     validations:
       required: true
-  - type: checkboxes
-    attributes:
-      label: Affects work products
-      options:
-        - label: Requirements
-        - label: Architecture
-        - label: Safety Analysis
-        - label: Security Analysis 
-        - label: Detailed Design
-        - label: Implementation 
-        - label: Test Cases
-        - label: Process
-        - label: Infrastructure
-        - label: Others
-          required: true
-  - type: dropdown
-    attributes:
-      label: Expected available in Release 
-      options:
-        - 0.6
-        - 0.7
-        - 0.8
-        - 0.9
-        - 1.0
-        - 2.0
-        - 3.0
-      default: 0
-    validations:
-      required: false
