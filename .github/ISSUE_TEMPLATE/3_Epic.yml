@@ -23,11 +23,7 @@ body:
   - type: textarea
     attributes:
       label: Epic Description
-      description: |
-        - Impact to users
-        - Use following template within a PR and link it to this issue
-          [Change Management Feature Request Template](https://eclipse-score.github.io/process_description/main/process_areas/change_management/guidance/change_management_feature_template.html) needs to be used
-          [Change Management Component Request Template](https://eclipse-score.github.io/process_description/main/process_areas/change_management/guidance/change_management_component_template.html) needs to be used
+      description: Goal of the Epic
     validations:
       required: true
   - type: textarea
