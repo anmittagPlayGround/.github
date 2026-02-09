@@ -30,7 +30,7 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Expected available in Release 
+      label: Expected Implementation Version (Release)
       options:
         - '1.0'
         - '2.0'
