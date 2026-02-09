@@ -24,9 +24,9 @@ body:
     attributes:
       label: Product Increment Description
       description: |
-        - New Functionality / Features 
-        - API changes 
-        - Major Fixes
+          - New Functionality / Features 
+          - API changes 
+          - Major Fixes
     validations:
       required: true
   - type: textarea
