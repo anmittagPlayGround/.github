@@ -93,6 +93,7 @@ body:
     attributes:
       label: Last Affected Release 
       options:
+        - not released (main)        
         - pre-0.5
         - 0.5
         - 0.6
@@ -107,6 +108,7 @@ body:
     attributes:
       label: Expected Fixed Release
       options:
+        - before release (main)        
         - 0.5
         - 0.6
         - 0.7
