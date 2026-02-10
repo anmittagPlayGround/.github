@@ -34,7 +34,7 @@ body:
       description: |
         Documentation of the analysis results
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: Solution
