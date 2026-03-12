@@ -14,7 +14,6 @@
 name: Product Increment
 description: Issue to track a Product Increment
 title: "Your Product Increment title"
-labels: ["codeowner_review"]
 type: 'Product Increment'
 body:
   - type: markdown
@@ -24,9 +23,9 @@ body:
     attributes:
       label: Product Increment Description
       description: |
-          - New Functionality / Features 
-          - API changes 
-          - Major Fixes
+         - New Functionality / Features
+         - API changes 
+         - Major Fixes 
     validations:
       required: true
   - type: textarea
