@@ -34,7 +34,7 @@ body:
         - label: Requirements
         - label: Architecture
         - label: Safety Analysis
-        - label: Safety Analysis
+        - label: Security Analysis
         - label: Detailed Design
         - label: Implementation and Testing
         - label: all  
